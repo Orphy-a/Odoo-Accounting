@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_account_journal,access_custom_account_journal,model_custom_account_journal,,1,1,1,1
+access_custom_account_move,access_custom_account_move,model_custom_account_move,,1,1,1,1
+access_custom_account_partner,access_custom_account_partner,model_custom_account_partner,,1,1,1,1
+access_custom_account_asset,access_custom_account_asset,model_custom_account_asset,,1,1,1,1
+access_custom_account_budget,access_custom_account_budget,model_custom_account_budget,,1,1,1,1
+access_custom_account_currency,access_custom_account_currency,model_custom_account_currency,,1,1,1,1
+access_custom_account_tax,access_custom_account_tax,model_custom_account_tax,,1,1,1,1
+access_custom_account_tax_group,access_custom_account_tax_group,model_custom_account_tax_group,,1,1,1,1
+access_custom_account_tax_period,access_custom_account_tax_period,model_custom_account_tax_period,,1,1,1,1
+access_custom_account_tax_report,access_custom_account_tax_report,model_custom_account_tax_report,,1,1,1,1

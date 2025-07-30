@@ -1,0 +1,16 @@
+<odoo>
+    <menuitem id="menu_accounting_root" name="Accounting"/>
+    <menuitem id="menu_custom_account_account" name="Chart of Accounts" parent="menu_accounting_root" action="action_custom_account_account"/>
+    <menuitem id="menu_custom_account_journal" name="Journals" parent="menu_accounting_root" action="action_custom_account_journal"/>
+    <menuitem id="menu_custom_account_move" name="Journal Entries" parent="menu_accounting_root" action="action_custom_account_move"/>
+    <menuitem id="menu_custom_account_partner" name="Partners" parent="menu_accounting_root" action="action_custom_account_partner"/>
+    <menuitem id="menu_custom_account_asset" name="Assets" parent="menu_accounting_root" action="action_custom_account_asset"/>
+    <menuitem id="menu_custom_account_budget" name="Budget" parent="menu_accounting_root" action="action_custom_account_budget"/>
+    <menuitem id="menu_custom_account_currency" name="Currency" parent="menu_accounting_root" action="action_custom_account_currency"/>
+    
+    <!-- Tax Menu -->
+    <menuitem id="menu_custom_account_tax" name="Taxes" parent="menu_accounting_root" action="action_custom_account_tax"/>
+    <menuitem id="menu_custom_account_tax_group" name="Tax Groups" parent="menu_accounting_root" action="action_custom_account_tax_group"/>
+    <menuitem id="menu_custom_account_tax_report" name="Tax Reports" parent="menu_accounting_root" action="action_custom_account_tax_report"/>
+    <menuitem id="menu_custom_account_tax_period" name="Tax Periods" parent="menu_accounting_root" action="action_custom_account_tax_period"/>
+</odoo>

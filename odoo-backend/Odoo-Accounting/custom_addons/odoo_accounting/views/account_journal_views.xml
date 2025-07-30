@@ -1,0 +1,48 @@
+<odoo>
+    <record id="action_custom_account_journal" model="ir.actions.act_window">
+        <field name="name">Journals</field>
+        <field name="res_model">custom.account.journal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new journal
+            </p>
+        </field>
+    </record>
+
+    <record id="view_custom_account_journal_tree" model="ir.ui.view">
+        <field name="name">custom.account.journal.tree</field>
+        <field name="model">custom.account.journal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_custom_account_journal_form" model="ir.ui.view">
+        <field name="name">custom.account.journal.form</field>
+        <field name="model">custom.account.journal</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="type"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_custom_account_journal"
+              name="Journals"
+              parent="menu_accounting_root"
+              action="action_custom_account_journal"
+              sequence="20"/>
+</odoo>

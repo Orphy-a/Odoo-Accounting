@@ -1,0 +1,38 @@
+<odoo>
+
+    <!-- 1. 액션 정의가 먼저! -->
+    <record id="action_custom_account_account" model="ir.actions.act_window">
+        <field name="name">Chart of Accounts</field>
+        <field name="res_model">custom.account.account</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- 2. 트리/폼 뷰 정의 -->
+    <record id="view_custom_account_account_tree" model="ir.ui.view">
+        <field name="name">custom.account.account.tree</field>
+        <field name="model">custom.account.account</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_custom_account_account_form" model="ir.ui.view">
+        <field name="name">custom.account.account.form</field>
+        <field name="model">custom.account.account</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

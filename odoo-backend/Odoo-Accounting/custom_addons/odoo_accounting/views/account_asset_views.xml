@@ -1,0 +1,48 @@
+<odoo>
+    <!-- 1. 액션 정의가 먼저! -->
+    <record id="action_custom_account_asset" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">custom.account.asset</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_custom_account_asset_tree" model="ir.ui.view">
+        <field name="name">custom.account.asset.tree</field>
+        <field name="model">custom.account.asset</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="purchase_date"/>
+                <field name="value"/>
+                <field name="depreciation_method"/>
+                <field name="useful_life"/>
+                <field name="residual_value"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_custom_account_asset_form" model="ir.ui.view">
+        <field name="name">custom.account.asset.form</field>
+        <field name="model">custom.account.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="purchase_date"/>
+                        <field name="value"/>
+                        <field name="depreciation_method"/>
+                        <field name="useful_life"/>
+                        <field name="residual_value"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_custom_account_asset" name="Assets" parent="menu_accounting_root" sequence="40" action="action_custom_account_asset"/>
+</odoo>

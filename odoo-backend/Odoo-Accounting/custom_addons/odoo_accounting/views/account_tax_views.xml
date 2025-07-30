@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tax Configuration Views -->
+    
+    <!-- Tax Tree View -->
+    <record id="view_custom_account_tax_tree" model="ir.ui.view">
+        <field name="name">custom.account.tax.tree</field>
+        <field name="model">custom.account.tax</field>
+        <field name="arch" type="xml">
+            <tree string="Taxes">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="amount"/>
+                <field name="type_tax_use"/>
+                <field name="tax_category"/>
+                <field name="effective_date"/>
+                <field name="expiry_date"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Tax Form View -->
+    <record id="view_custom_account_tax_form" model="ir.ui.view">
+        <field name="name">custom.account.tax.form</field>
+        <field name="model">custom.account.tax</field>
+        <field name="arch" type="xml">
+            <form string="Tax Configuration">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="amount"/>
+                            <field name="amount_type"/>
+                            <field name="type_tax_use"/>
+                        </group>
+                        <group>
+                            <field name="tax_category"/>
+                            <field name="calculation_method"/>
+                            <field name="is_exempt"/>
+                            <field name="exempt_reason" invisible="not is_exempt"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="effective_date"/>
+                            <field name="expiry_date"/>
+                        </group>
+                        <group>
+                            <field name="account_id"/>
+                            <field name="refund_account_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="report_frequency"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="created_at"/>
+                            <field name="updated_at"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Tax Search View -->
+    <record id="view_custom_account_tax_search" model="ir.ui.view">
+        <field name="name">custom.account.tax.search</field>
+        <field name="model">custom.account.tax</field>
+        <field name="arch" type="xml">
+            <search string="Tax Search">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="tax_category"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Exempt" name="exempt" domain="[('is_exempt', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Tax Category" name="tax_category" context="{'group_by': 'tax_category'}"/>
+                    <filter string="Type" name="type_tax_use" context="{'group_by': 'type_tax_use'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Tax Action -->
+    <record id="action_custom_account_tax" model="ir.actions.act_window">
+        <field name="name">Taxes</field>
+        <field name="res_model">custom.account.tax</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_custom_account_tax_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tax configuration!
+            </p>
+        </field>
+    </record>
+    
+    <!-- Tax Group Views -->
+    
+    <!-- Tax Group Tree View -->
+    <record id="view_custom_account_tax_group_tree" model="ir.ui.view">
+        <field name="name">custom.account.tax.group.tree</field>
+        <field name="model">custom.account.tax.group</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Groups">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="country_id"/>
+                <field name="is_korean_vat"/>
+                <field name="vat_type"/>
+                <field name="reporting_period"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Tax Group Form View -->
+    <record id="view_custom_account_tax_group_form" model="ir.ui.view">
+        <field name="name">custom.account.tax.group.form</field>
+        <field name="model">custom.account.tax.group</field>
+        <field name="arch" type="xml">
+            <form string="Tax Group">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="country_id"/>
+                        </group>
+                        <group>
+                            <field name="is_korean_vat"/>
+                            <field name="vat_type" invisible="not is_korean_vat"/>
+                            <field name="reporting_period"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Taxes">
+                            <field name="tax_ids"/>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Tax Group Action -->
+    <record id="action_custom_account_tax_group" model="ir.actions.act_window">
+        <field name="name">Tax Groups</field>
+        <field name="res_model">custom.account.tax.group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tax group!
+            </p>
+        </field>
+    </record>
+    
+    <!-- Tax Report Views -->
+    
+    <!-- Tax Report Tree View -->
+    <record id="view_custom_account_tax_report_tree" model="ir.ui.view">
+        <field name="name">custom.account.tax.report.tree</field>
+        <field name="model">custom.account.tax.report</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Reports">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="period_start"/>
+                <field name="period_end"/>
+                <field name="report_type" widget="selection"/>
+                <field name="additional_period"/>
+                <field name="sale_vat_amount" sum="Total"/>
+                <field name="purchase_vat_amount" sum="Total"/>
+                <field name="vat_payable" sum="Total"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'confirmed'" decoration-success="state == 'submitted'"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Tax Report Form View -->
+    <record id="view_custom_account_tax_report_form" model="ir.ui.view">
+        <field name="name">custom.account.tax.report.form</field>
+        <field name="model">custom.account.tax.report</field>
+        <field name="arch" type="xml">
+            <form string="Tax Report">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" 
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_submit" string="Submit" type="object" 
+                            class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,submitted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="period_start"/>
+                            <field name="period_end"/>
+                        </group>
+                        <group>
+                            <field name="report_type" widget="selection"/>
+                            <field name="additional_period"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,submitted"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sale_vat_amount"/>
+                            <field name="purchase_vat_amount"/>
+                            <field name="vat_payable"/>
+                            <field name="exempt_amount"/>
+                        </group>
+                        <group>
+                            <field name="zero_rated_amount"/>
+                            <field name="withholding_amount"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="tax_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Tax Report Search View -->
+    <record id="view_custom_account_tax_report_search" model="ir.ui.view">
+        <field name="name">custom.account.tax.report.search</field>
+        <field name="model">custom.account.tax.report</field>
+        <field name="arch" type="xml">
+            <search string="Tax Report Search">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="report_type"/>
+                <field name="additional_period"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Submitted" name="submitted" domain="[('state', '=', 'submitted')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Report Type" name="report_type" context="{'group_by': 'report_type'}"/>
+                    <filter string="State" name="state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Tax Report Action -->
+    <record id="action_custom_account_tax_report" model="ir.actions.act_window">
+        <field name="name">Tax Reports</field>
+        <field name="res_model">custom.account.tax.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_custom_account_tax_report_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tax report!
+            </p>
+        </field>
+    </record>
+    
+    <!-- Tax Period Views -->
+    
+    <!-- Tax Period Tree View -->
+    <record id="view_custom_account_tax_period_tree" model="ir.ui.view">
+        <field name="name">custom.account.tax.period.tree</field>
+        <field name="model">custom.account.tax.period</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Periods">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="period_type"/>
+                <field name="deadline_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Tax Period Form View -->
+    <record id="view_custom_account_tax_period_form" model="ir.ui.view">
+        <field name="name">custom.account.tax.period.form</field>
+        <field name="model">custom.account.tax.period</field>
+        <field name="arch" type="xml">
+            <form string="Tax Period">
+                <header>
+                    <button name="action_open" string="Open" type="object" 
+                            class="oe_highlight" invisible="state != 'closed'"/>
+                    <button name="action_close" string="Close" type="object" 
+                            class="oe_highlight" invisible="state != 'open'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,closed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group>
+                            <field name="period_type"/>
+                            <field name="deadline_date"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tax Reports">
+                            <field name="tax_report_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Tax Period Action -->
+    <record id="action_custom_account_tax_period" model="ir.actions.act_window">
+        <field name="name">Tax Periods</field>
+        <field name="res_model">custom.account.tax.period</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tax period!
+            </p>
+        </field>
+    </record>
+    
+</odoo> 

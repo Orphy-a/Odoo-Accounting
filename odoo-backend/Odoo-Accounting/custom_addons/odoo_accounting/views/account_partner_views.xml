@@ -1,0 +1,44 @@
+<odoo>
+    <!-- 1. 액션 정의가 먼저! -->
+    <record id="action_custom_account_partner" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">custom.account.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_custom_account_partner_tree" model="ir.ui.view">
+        <field name="name">custom.account.partner.tree</field>
+        <field name="model">custom.account.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="vat"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_custom_account_partner_form" model="ir.ui.view">
+        <field name="name">custom.account.partner.form</field>
+        <field name="model">custom.account.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="type"/>
+                        <field name="vat"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_custom_account_partner" name="Partners" parent="menu_accounting_root" sequence="35" action="action_custom_account_partner"/>
+</odoo>
