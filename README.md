@@ -111,7 +111,6 @@ src/
 
 ## 🔗 API 엔드포인트
 
-- `GET /api/accounting/health` - 헬스 체크
 - `GET /api/accounting/accounts` - 계정과목 조회
 - `GET /api/accounting/partners` - 거래처 조회
 - `GET /api/accounting/journal-entries` - 분개장 조회
